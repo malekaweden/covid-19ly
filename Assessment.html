@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>الاختبار الذاتي لكورونا فيروس</title>
+  <link rel="stylesheet" href="assts/css/css.css">
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap-grid.min.css">
+  <script src="assts/js/vue.js"></script>
+
+
+</head>
+
+<body dir="rtl">
+ 
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-flex flex-column align-items-center justify-content-center  " style="margin:0;"  >
+      <h1 class="navbar-brand d-flex flex-column align-items-center justify-content-center  " href="#" style="margin-bottom: 0; padding-bottom: 0;" >الكشف عن بعد COVID-19 ليبيا </h1>
+    </nav>
+  
+    <div class="container" style="margin-top: 100px;;">
+      <div class="row justify-content-center" style="text-align: right;">
+        <div class="col-md-8">
+          <h1> انت الان تقوم بالاختبار الذاتي </h1>
+          <br>
+          <b>ملاحظة :</b>
+          <p style="font-size: 18px;">هذا الاختبار لا يعني الاصابة المؤكدة ولكن يعطي تقييما مبدئيا من اجل تقديم المساعدة
+            لك </p>
+          <hr><br>
+
+          <div id="app">
+
+            <!--  QUESTION  -->
+            <div id="q1">
+              <h1>هل تواجه أيًا مما يلي:</h1>
+              <ul>
+                <li>صعوبة  شديدة في التنفس (تؤدي الى صعوبة في التكلم )</li>
+                <li>ألم شديد بالصدر</li>
+                <li>واجهت صعوبة في الاستيقاظ </li>
+                <li>فقدان الوعي 
+                </li>
+              </ul>
+              <button class="btn btn-lg btn-block btn-primary" type="button" onclick="q1()">نعم</button>
+              <button class="btn btn-lg btn-block btn-primary" type="button" onclick="q2()">لا </button>
+            </div>
+            <div id="q2" style="display: none;">
+              <h1>هل تواجه أيًا مما يلي:</h1>
+              <ul>
+                <li>ضيق في التنفس</li>
+                <li>عدم القدرة على الاستلقاء بسبب صعوبة التنفس </li>
+                <li>يوجد لديك امراض تنفسية  مزمنة (زيادة في الاعراض والنوبات عن المعتاد )</li>
+              </ul>
+              <button class="btn btn-lg btn-block btn-primary" onclick="yesq2()" type="button">نعم</button>
+              <button class="btn btn-lg btn-block btn-primary" onclick="noq2()" type="button">لا </button>
+            </div>
+            <div id="q3" style="display: none;">
+              <h1>هل تواجه أيًا مما يلي:</h1>
+              <ul>
+                <li>حمى</li>
+                <li>سعال</li>
+                <li>ضيق في التنفس</li>
+                <li>إلتهاب الحلق</li>
+              </ul>
+              <button class="btn btn-lg btn-block btn-primary" type="button" onclick="yesq3()">نعم</button>
+              <button class="btn btn-lg btn-block btn-primary" type="button" onclick="noq3()">لا </button>
+            </div>
+            <div id="q4" style="display: none;">
+              <h1>في الـ 14 يومًا الماضية ، هل كان لديك اتصال وثيق بشخص تم التأكد من إصابته بفيروس كورونا ؟
+              </h1>
+              <p>الاتصال الوثيق يقصد به
+
+              </p>
+              <ul>
+                <li>افراد الاسره </li>
+                <li>الاصدقاء </li>
+                <li>الزملاء في العمل </li>
+              </ul>
+              <button class="btn btn-lg btn-block btn-primary" type="button" onclick="yesq4()">نعم</button>
+              <button class="btn btn-lg btn-block btn-primary" type="button" onclick="noq4()">لا </button>
+            </div>
+            <div id="q5" style="display: none;">
+              <h1>خلال الـ 14 يومًا الماضية ، هل عدت من السفر إلى أي مواقع أخرى خارج ليبيا ؟</h1>
+              <br>
+              <br>
+              <p>يشمل السفر المرور عبر المطار.</p>
+              <button class="btn btn-lg btn-block btn-primary" type="button" onclick="yesq5()">نعم</button>
+              <button class="btn btn-lg btn-block btn-primary" type="button" onclick="noq5()">لا </button>
+            </div>
+
+
+            <!--RESULT -->
+            <div id="r1" style="display: none;">
+              <h1> يرجى الاتصال برقم 911 أو الذهاب مباشرة إلى أقرب قسم للطوارئ.</h1>
+              <a href="Assessment.html" style="text-align: center; font-size: 15px;"> إعادة الاختبار </a>
+            </div>
+            <div id="r2" style="display: none;">
+              <h1>يرجى الاتصال برقم 811 للتحدث مع ممرضة.</h1>
+              <br>
+              <p>نظرًا لأنك قد تحتاج إلى التحدث مع ممرضة حول أعراضك ، يرجى الاتصال برقم 811. نحن نواجه كميات مكثفة من
+                المكالمات وسنصل إلى مكالمتك بأسرع ما يمكن.</p>
+            </div>
+            <div id="r3" style="display: none;">
+              <h1>تحتاج إلى عزل نفسك.</h1>
+              <br>
+              <br>
+              <h3>لأن لديك أعراض ، يجب أن تعزل نفسك لمدة 14 يومًا.</h3>
+              <ul>
+                <li>يرجى عدم زيارة مستشفى أو مكتب طبيب أو مختبر أو منشأة رعاية صحية دون استشارة الرقم أولاً.
+                </li>
+                <li>لا تذهب إلى أي مكان عام ، و ابقى في المنزل ، ولا تستقبل اي  زوار.
+                </li>
+                <li>لا تشارك الأشياء الشخصية مثل الأطباق أو الأواني أو المناشف واغسل يديك كثيرًا.
+                </li>
+              </ul>
+              <b>استمر في هذا التقييم لتحديد الخطوات الإضافية التي يجب عليك اتخاذها.</b>
+              <br>
+              <div style="margin-top: 20PX;margin-bottom: 20PX;"></div>
+              
+            </div>
+            <div id="r4" style="display: none;">
+              <h1>نظرًا لعدم وجود أي أعراض لـ كورونا فيروس ، لا تحتاج إلى اختبار كورونا فيروس . </h1>
+              <p>يركز الاختبار حاليًا على الأفراد الذين سافروا خارج ليبيا أو كانوا على اتصال بشخص تم تشخيص إصابته بـ
+                كورونا فيروس ، أو ظهرت عليهم أعراض كورونا فيروس.</p>
+              <br>
+              <div style="color: inherit;
+          text-decoration: none;
+          background-color: #EBEFF3;
+          border-radius: 10px;
+          padding: 0.25em 1em;
+          box-sizing: border-box;
+          margin: 1em 0;
+          font-weight: bold;">
+
+                <!-- star p -->
+                <p>مع ذلك هناك احمتال ان تصاب بالمرض لذلك يجب ان تعزل نفسك 14 يوم من اجل الوقاية يجب ان  تتبع التالي
+                </p>
+                <br>
+                <ul>
+                  <li>يرجى عدم زيارة مستشفى أو مكتب طبيب أو مختبر أو منشأة رعاية صحية دون استشارة الرقم أولاً.
+                  </li>
+                  <li>لا تذهب إلى أي مكان عام ، و ابقى في المنزل ، ولا تستقبل اي زوار.
+
+                  </li>
+                  <li>لا تشارك الأشياء الشخصية مثل الأطباق أو الأواني أو المناشف واغسل يديك كثيرًا.
+                  </li>
+                </ul>
+                <br>
+
+                <p>في حالة لديك اي استفسارات يرجى الاتصال بالرقم </p>
+                <div style="margin-top: 20PX;margin-bottom: 20PX;"></div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer style="margin-top:100px; text-align: center;">
+   
+  </footer>
+  <script src="assts/js/js.js"></script>
+
+  <script src="node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="node_modules/@popperjs/core/src/popper.js"></script>
+  <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>
